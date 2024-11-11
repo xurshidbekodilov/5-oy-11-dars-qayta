@@ -1,7 +1,5 @@
 const block = document.querySelector(".block");
 const button = document.querySelector(".button");
-
-// Universal karta yaratish funksiyasi
 function createCard(value) {
     return `
     <div class="card">
@@ -13,8 +11,6 @@ function createCard(value) {
     </div>
     `;
 }
-
-// Tugma bosilganda faqat bitta API'dan ma'lumot olish
 button.addEventListener("click", function() {
     fetch("https://jsonplaceholder.typicode.com/users", {
         method: "GET"
@@ -27,7 +23,7 @@ button.addEventListener("click", function() {
         }
     })
     .then(data => {
-        block.innerHTML = '<h1>Yangi sahifa</h1>'; // Blockni tozalash
+        block.innerHTML = '<h1>Yangi sahifa</h1>';
         data.forEach(element => {
             const card = createCard(element);
             block.innerHTML += card;
@@ -40,8 +36,6 @@ button.addEventListener("click", function() {
         console.log("API ga murojaat tugadi!");
     });
 });
-
-// Sahifa yuklanganda bir nechta API'lardan ma'lumot olish
 document.addEventListener("DOMContentLoaded", function() {
     const urls = [
         "https://jsonplaceholder.typicode.com/comments",
@@ -62,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
-            // Har bir API'dan 4 ta elementni ko'rsatish
             data.slice(0, 4).forEach(element => {
                 const card = createCard({
                     name: element.name || element.title || "No Name",
